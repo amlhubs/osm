@@ -1,0 +1,1219 @@
+                                OMG Document bmi/2006-11-02
+
+           Organization Structure Metamodel (OSM)
+
+                                2nd Initial Submission
+
+                In Response to: Organization Structure Metamodel RFP
+                               (OMG Document bei/2004-06-05)
+                                Version 0.5 ­ November 9, 2006
+
+Jointly Submitted by (in alpha order):
+         88Solutions
+         Adaptive
+         Borland Software
+         Data Access Technologies
+         EDS
+         Lombardi Software
+
+Supported by:
+         Unisys
+Organization Structure Metamodel  2  Version 0.4
+Copyright © 2005 EDS, © 2006 Borland Software
+
+The companies listed above hereby grant a royalty-free license to the Object Management
+Group, Inc. (OMG) for worldwide distribution of this document or any derivative works
+thereof within OMG and to OMG members for evaluation purposes, so long as the OMG
+reproduces the copyright notices and the below paragraphs on all distributed copies.
+
+NOTICE: The information contained in this document is subject to change without
+notice.
+
+The material in this document details a submission to the Object Management Group for
+evaluation in accordance with the license and notices set forth on this page. This
+document does not represent a commitment to implement any portion of this specification
+by the submitter.
+
+WHILE THE INFORMATION IN THIS PUBLICATION IS BELIEVED TO BE
+ACCURATE, THE OBJECT MANAGEMENT GROUP AND THE COMPANIES
+LISTED ABOVE MAKE NO WARRANTY OF ANY KIND WITH REGARD TO
+THIS MATERIAL INCLUDING, BUT NOT LIMITED TO THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE. The Object Management Group and the companies listed above shall not be
+liable for errors contained herein or for incidental or consequential damages in
+connection with the furnishing, performance or use of this material.
+
+The copyright holders listed above acknowledge that the Object Management Group
+(acting itself or through its designees) is and shall at all times be the sole entity that may
+authorize developers, suppliers and sellers of computer software to use certification
+marks, trademarks or other special designations to indicate compliance with these
+materials.
+
+The copyright owners grant member companies of the OMG permission to make a
+limited number of copies of this document (up to fifty copies) for their internal use as part
+of the OMG evaluation process. Use, duplication, or disclosure by government is subject
+to restrictions as set forth in subdivision (c) (1) (ii) of the Right in Technical, Data and
+Computer Software Clause at DFARS 252.227.7013
+
+OMG® is a registered trademark of the Object Management Group, Inc.
+
+Organization Structure Metamodel  3  Version 0.4
+                                  Contents
+
+Organization Structure Metamodel (OSM) ...................................................................... 1
+Contents.......................................................................................................................... 4
+0 Submission-Specific Material .................................................................................. 7
+
+   0.1 Guide to the Submission .................................................................................. 7
+   0.2 Background ..................................................................................................... 8
+   0.3 Design Rationale.............................................................................................. 8
+   0.4 Co-Submitting and Supporting Organizations .................................................. 9
+
+      0.4.1 Co-Submitting Organizations ................................................................... 9
+      0.4.2 Supporting Organizations......................................................................... 9
+   0.5 Submission Contact Persons ............................................................................ 9
+   0.6 Statements of Proof of Concept...................................................................... 10
+   0.7 Responses to specific RFP Requirements....................................................... 10
+      0.7.1 Mandatory Requirements ....................................................................... 10
+      0.7.2 Optional Requirements........................................................................... 13
+      0.7.3 Issues to be Discussed ............................................................................ 14
+1 Introduction........................................................................................................... 16
+   1.1 Objectives...................................................................................................... 16
+      1.1.1 Unified Organizational Representation................................................... 16
+      1.1.2 Support for Related Systems .................................................................. 16
+      1.1.3 Robust Models ....................................................................................... 16
+      1.1.4 Model Integration................................................................................... 17
+      1.1.5 Multiple Vocabularies ............................................................................ 17
+      1.1.6 Business Rules ....................................................................................... 17
+
+Organization Structure Metamodel  4  Version 0.4
+   1.2 Scope............................................................................................................. 17
+      1.2.1 Organization Structure ........................................................................... 17
+      1.2.2 Effective Dates....................................................................................... 17
+      1.2.3 Multiple Chains of Authority ................................................................. 17
+      1.2.4 Qualifications......................................................................................... 18
+      1.2.5 Business rules ........................................................................................ 18
+      1.2.6 Vocabularies .......................................................................................... 18
+      1.2.7 Extended Enterprise ............................................................................... 18
+      1.2.8 Out of scope........................................................................................... 18
+
+   1.3 Conformance ................................................................................................. 19
+   1.4 Normative Sections........................................................................................ 19
+   1.5 Terms and Definitions.................................................................................... 19
+   1.6 Symbols and Abbreviations ........................................................................... 19
+   1.7 Changes to Adopted OMG Specifications ...................................................... 19
+   1.8 Guide to this Specification ............................................................................. 19
+   1.9 Credits ........................................................................................................... 19
+2 Overview............................................................................................................... 20
+   2.1 Organization Unit .......................................................................................... 20
+   2.2 Relationships ................................................................................................. 20
+   2.3 Position.......................................................................................................... 21
+   2.4 Legal Entities................................................................................................. 21
+   2.5 Assignments .................................................................................................. 21
+   2.6 Extended Enterprise....................................................................................... 21
+   2.7 Contractor Personnel...................................................................................... 22
+3 Basic OSM Specification....................................................................................... 23
+
+Organization Structure Metamodel  5  Version 0.4
+      3.1.1 Core....................................................................................................... 23
+      3.1.2 Legal Entity ........................................................................................... 25
+      3.1.3 Postion................................................................................................... 27
+      3.1.4 OrgUnit.................................................................................................. 28
+4 Business Rules Extension ...................................................................................... 30
+Annexes ........................................................................................................................ 35
+   A. Glossary ............................................................................................................... 35
+   B. Examples .............................................................................................................. 35
+
+Organization Structure Metamodel  6  Version 0.4
+0 Submission-Specific Material
+
+This section contains submission-specific information to support the evaluation process
+for this submission. This entire section will be removed from the final specification. It
+provides the context in which the submission should be considered. Subsequent sections
+constitute the specification being submitted. This section contains the following sub-
+sections:
+
+    · Guide to the Submission
+
+    · Background
+
+    · Design rationale
+
+    · Co-submitting and supporting organizations
+
+    · Statements of proof of concept
+
+    · Responses to specific RFP requirements
+
+0.1 Guide to the Submission
+
+The specification being submitted begins with Section 1. This submission contains the
+following major sections:
+
+    · Submission-Specific Material. This Section 0 contains information about
+         approach taken to the specification, the submitting and supporting organizations,
+         proofs of concept, and responses to specific RFP requirements.
+
+    · Introduction. This is the introduction to the specification and describes the
+         objectives, scope, conformance requirements, information about related
+         specifications, definitions and credits.
+
+    · Overview. This section describes the specification for a general understanding of
+         the concepts and how they fit together.
+
+    · OSM Metamodel. Details the metamodel specifications with descriptions of the
+         elements and their relationships.
+
+    · Rules Extension. This extends the OSM Metamodel to define the use of SBVR
+         rules to further define an organization structure and associated business rules.
+
+    · Annexes. This contains a glossary of terms and examples used to illustrate and
+         validate OSM concepts.
+
+Organization Structure Metamodel  7  Version 0.4
+The sections containing the overview, OSM metamodel, rule extensions to the
+metamodel, and the Glossary are normative.
+
+0.2 Background
+
+The organizational structure is a fundamental aspect of the design of an enterprise. It
+defines the relationships between people to support specialization and coordination of
+work. Traditional organizations relied primarily on a hierarchical structure with working
+relationships and communications occurring primarily through the hierarchical
+relationships. Traditionally, job titles were tightly linked the hierarchical structure.
+Modern enterprises have a variety of relationships in order to operate more efficiently
+and responsively. People need to identify appropriate contacts elsewhere in the
+organization in order to do their jobs efficiently and effectively. People may have job
+titles that do not imply any particular place in a hierarchy. People may have
+responsibilities to different parts of the organization. Such is the case in matrixed
+relationships and cross-organizational task forces. In addition, modern enterprises have
+more integrated relationships with other enterprises in extended enterprise relationships.
+
+The traditional hierarchical organization chart no longer meets the needs of
+organizational design or of guiding the day to day operation of the enterprise.
+
+In addition, the organization structure is a factor in the operation of a variety of
+information systems including human resources systems, payroll and accounting systems,
+business process/workflow systems, security systems, and so on. These systems require a
+consistent representation of the organization structure in order to function properly. They
+also require the ability to differentiate an individual's place in the organizational structure
+from the same individual's payscale information, and job title. In many enterprises, this
+need is addressed by a variety of organizational directories that each require
+administrative effort to be kept up to date and aligned.
+
+Managers need to be able to develop robust models of their organizations, and then
+deploy these models to production environments where the information can be shared by
+many people and systems. The models should be sharable in different modeling tools,
+and the run-time directories should provide access to standard information to support the
+various systems.
+
+One respect in which past organizational models have failed to be robust, is that they
+have typically been assumed to be based on a single global scheme, at least within any
+one entity. In practice, we find today that geographically based organization by "region
+and district," market based organization (perhaps as "retail and wholesale", or
+"government and corporate") and product based organization, coexist within one
+corporate entity. We propose that models should recognize that different, and potentially
+orthogonal, organizational schemes may co-exist within one entity.
+
+0.3 Design Rationale
+
+Job title. Job title from position
+
+Organization Structure Metamodel  8  Version 0.4
+Position. Position from organization
+Assignment. Assignment from position
+Legal entity. Legal entity for business partners
+Organization evolution. Effective dates
+Organizational schemes. Allow coexistence of a variety of schemes within one entity
+Rules. Rules for expression by business people, interpretation by tools and processes
+Compliance levels. Extension to enable tools without rules
+
+0.4 Co-Submitting and Supporting Organizations
+
+The following paragraphs identify the submitting organizations and organizations that
+have supported the development of this specification
+0.4.1 Co-Submitting Organizations
+
+    · Adaptive
+    · EDS
+    · 88Solutions
+    · Borland Software
+    · Lombardi Software
+    · Data Access Technologies
+0.4.2 Supporting Organizations
+    · Unisys
+
+0.5 Submission Contact Persons
+
+The following persons represent the submitter and supporter organizations:
+Fred Cummins, EDS
+Email: fred.cummins@eds.com
+
+Manfred Koethe, 88Solutions
+Email: koethe@88solutions.com
+
+Organization Structure Metamodel  9  Version 0.4
+Donald Baisley, Unisys
+Email: Donald.Baisley@unisys.com
+
+Karl Frank, Borland Software
+Email: kfrank@borland.com
+
+Petko Chobantonov, Lombardi Software
+
+Email: pchobantonov@lombardi.com
+
+Cory Casanave, Data Access Technologies
+Email: cbc@enterprisecomponent.com
+
+Karl Frank, Borland Software
+Email: kfrank@borland.com
+
+Pete Rivett, Adaptive Inc.
+Email: rivett@adaptive.com
+
+0.6 Statements of Proof of Concept
+
+The submitters have experience in business consulting, strategic planning, business
+process modeling and directory management that provide an understanding of the
+modeling requirements, and they have experience in the design of metamodels and
+development of tools to support modeling.
+
+0.7 Responses to specific RFP Requirements
+
+[These will be completed when the specification is more complete.]
+
+The following tables provide a cross-reference between the requirements as stated in the
+Request for Proposal, and the corresponding responses provided by this submission.
+
+0.7.1 Mandatory Requirements
+
+Requirement                               Resolution
+
+6.5.1: Required Metamodel
+
+Specify a MOF metamodel to represent the
+concepts appropriate to a model of an
+enterprise organization structure.
+
+6.5.2: Directory mapping
+Specify at least one schema mapping for
+
+Organization Structure Metamodel          10          Version 0.4
+creation of a production directory for a
+modeled organization.
+
+6.5.3: Express as UML
+
+Express models using UML in its most
+recently adopted version.
+
+6.5.4: Views
+
+Ensure that appropriate views may be
+defined for reporting and for export of
+subsets of the model.
+
+6.5.5: XMI
+
+Specify XMI for the exchange of models
+between different tools.
+
+6.5.6: Enterprise entities and relationships
+
+Support models where types of entities,
+types of relationships and modeling
+constraints can be specified for an
+enterprise. Instances of entity and
+relationship types specify actual
+organization structures and people.
+
+6.5.7: Specialized Entity Types
+
+Support the ability to define types of
+organizational entities (e.g., division,
+department) and add custom attributes to
+organizational entities while preserving the
+ability to exchange the model between
+tools based on the standard meta model.
+
+6.5.8: Unique Identities
+
+Require organizational entities to be
+uniquely identifiable.
+
+Organization Structure Metamodel              11  Version 0.4
+6.5.9: Level of Authority
+
+Provide representation that will express
+level of authority for various positions
+(e.g., spending authority, hiring authority,
+review authority).
+
+6.5.10: Diverse Organizational Structures
+
+Provide the ability to define a variety of
+organizational structures including all
+traditional forms of organizational
+structure, for example, hierarchical
+organizations, and matrix organizations.
+
+6.5.11: Extended Enterprise
+
+Provide for integrating organizations
+outside the principal enterprise with
+appropriate designation of which entities
+belong to which enterprises. This may
+arise, for example, with franchised
+operations, outside services or outsourcing.
+
+6.5.12: Matrix Organizations
+
+Provide for the representation of
+organizational structures that span across
+the primary organizational structure such as
+committees and project teams and the
+associated responsibilities of participants in
+these organization structures.
+
+6.5.13: Transitional States
+
+Provide for specification of resolution
+mechanisms for transitional states where
+positions in an organization may be
+temporarily vacant or the assigned person
+is unavailable.
+
+6.5.14: Expression of Constraints
+
+Provide for the specification of constraints
+on the organization structure, entity
+
+Organization Structure Metamodel  12            Version 0.4
+attributes and relationships, for example,
+minimum or maximum number of direct
+reports, a person cannot be assigned to
+indirectly report to themselves, a person
+cannot be assigned to two positions that
+require separation of authority and a person
+may not have more authority than that
+person's manager
+
+6.5.15: Levels of Compliance
+
+Define compliance levels that support
+compliance of organizational
+design/modeling tools that are separate
+from production directories providing
+runtime access to organizational structure
+information
+
+0.7.2 Optional Requirements                   Resolution
+Requirement
+
+6.6.1: Effective Dates
+
+Support effective dates for all
+organizational structure and/or element
+changes.
+
+6.6.2: Organization "as of" Specified Date
+
+Support the ability to retrieve
+organizational information `as of' a
+particular date.
+
+6.6.3: Templates
+
+Provide for the definition of templates
+(prototypical fragments of organizational
+structure) for designing organizations.
+Specifications shall define how existing
+instances created with a template will be
+dealt with when the template changes.
+
+Organization Structure Metamodel              13          Version 0.4
+6.6.4: Alternative Vocabularies
+
+Support multiple alternative vocabularies
+as provided by the Business Semantics of
+Business Rules, assuming that specification
+is adopted.
+
+6.6.5: Position Qualifications
+
+Provide for the specification of personnel
+qualifications for a position in the
+organization such as a certification or
+educational requirement.
+
+0.7.3 Issues to be Discussed                 Resolution
+Issue to be discussed
+
+6.7.1: Relationship to Directories
+
+How an organization model relates to
+existing directories and directory
+technology, particularly those compliant
+with LDAP.
+
+6.7.2: Alternative Organizational Types
+
+Examples of the representation of
+alternative organizational types and
+viewpoints.
+
+6.7.3: Runtime Access Authority
+
+How the specification supports
+specification or derivation of an
+individual's authority to access or modify
+views of the organizational model at
+runtime.
+
+6.7.4: Integration with Related Models
+Integration of the organizational structure
+
+Organization Structure Metamodel             14          Version 0.4
+metamodel with business process models
+and resource management where such
+models may specify selection criteria for
+individuals based on organization,
+positions, and organizational relationships.
+
+Organization Structure Metamodel              15  Version 0.4
+1 Introduction
+
+This section provides introductory information for the Business Process Definition
+Metamodel specification. It has the following sub-sections:
+
+    · Objectives
+    · Scope
+    · Conformance
+    · Normative References
+    · Terms and Definitions
+    · Symbols and Abbreviations
+    · Changes to Adopted OMG Specifications
+    · Guide to this Specification
+    · Credits
+
+1.1 Objectives
+
+The design objectives of this specification are discussed in the following paragraphs.
+1.1.1 Unified Organizational Representation
+
+Provide the concepts behind the organization of diverse and mutually independent
+corporate and government entities, and thus enable a single metamodel to provide the
+basis for exchanging organizational models.
+1.1.2 Support for Related Systems
+
+Provide connection points into Business Process Descriptions, particularly with regard to
+the concepts of Role, Capability, and Responsibility. Likewise, provide connection
+points with Business Vocabularies and Business Rules.
+1.1.3 Robust Models
+
+Ensure that the specification will accommodate the full range of known diversity in
+modern organizations.
+
+Organization Structure Metamodel  16  Version 0.4
+1.1.4 Model Integration
+
+Support scenarios in which organizations merge, and consequently may desire the
+merging of models developed in accord with the proposed metamodel.
+
+1.1.5 Multiple Vocabularies
+
+Provide a metamodel with the ability to abstract from the concrete terminology used for
+organizational concepts, and to provide for the same concrete vocabulary to be assigned
+in particular instances, with differing semantics.
+
+1.1.6 Business Rules
+
+Consistency with leading conceptualizations of business rules is important, because
+organization is typicallly defined in terms of rules.
+
+1.1.7 Business Process Concepts: Roles and Responsibilities
+
+Consistency with leading conceptualizations of business process is important, because
+organization is typicallly defined in terms of roles and responsibilities, which are also
+central concepts in many views of business process.
+
+1.2 Scope
+
+The following paragraphs describe the scope of the OSM specification. The last sub-
+section briefly describes several subject areas that are specifically out of scope and
+should be addressed by other, related specifications.
+
+1.2.1 Organization Structure
+
+The primary objective is to enable the robust representation of an organization's structure
+including formal relationships that go beyond the traditional hierarchical structure.
+
+1.2.2 Effective Dates
+
+Effective dates enable the organization to be viewed from the perspective of different
+points in time. This allows a model to include future changes so they can be effected
+automatically at the appropriate point in time. Past effective organizations may
+supported for accountability.
+
+1.2.3 Multiple Chains of Authority
+
+Modern organizations are not confined to a strict hierarchy for chains of authority.
+Different chains of authority may be defined for different purposes. These chains of
+authority should support approvals in automated business processes.
+
+Organization Structure Metamodel  17  Version 0.4
+1.2.4 Qualifications
+
+Qualifications for positions in organizations are an important aspect of organizational
+design. Qualifications are the filters applied to capabilities to determine if candidates can
+be considered for a position.
+
+1.2.5 Business rules
+
+There are three categories of business rules relevant to an organization model: (1) rules
+governing the formal relationships such as the number of direct reports or the assignment
+of a person to multiple positions, (2) rules defining authority such as spending authority,
+and (3) rules defining responsibilities relative to a business process.
+
+1.2.6 Business process roles and responsibilities
+
+Concepts of role and responsibility, involved in describing business organizations are
+also encountered in the domain of business process modeling.
+
+Vocabularies
+
+In a multi-national organization, it is beneficial to be able to express an organization
+model and associated rules in multiple languages. Furthermore, even within the same
+language community, the same organizational concept is likely to be expressed in
+different terminology. One corporation's "geographic region" may be another's
+"district".
+
+1.2.7 Extended Enterprise
+
+With contract employees, integration of supply chains and outsourcing of business
+functions, organizational relationships are no longer confined to corporate employees. It
+must be possible to represent the entities and relationships of the extended enterprise.
+
+1.2.8 Out of scope
+
+The following subject areas are out of scope and should be addressed by other
+specifications.
+
+Capabilities. The OSM does not address the representation of capabilities of
+organizations or people. These should be the subject of other human resources or service
+offering services..
+
+Services. The OSM does not provide for the specification of any services with respect to
+organization management.
+
+Notation. Graphical and textual notations are outside the scope of this specification per
+se. Nevertheless, XMI (XML for Model Interchange) defines the standard for exchange
+of MOF-based models and will provide portability of OSM models.
+
+Organization Structure Metamodel  18  Version 0.4
+1.3 Conformance
+
+Full conformance with this specification requires implementation of the ability to
+express organizational rules and express organizational names and relationships in
+multiple vocabularies in compliance with the SBVR specification as specified in Section
+4.
+
+Basic conformance with this specification requires the ability to model organizations
+supporting the OSM concepts defined in Section 3 and to import and export XMI that is
+compliant with the OSM XMI schema specification.
+
+1.4 Normative Sections
+
+The following sections of this specification are normative:
+
+    · Section 2, Overview
+    · Section 3, the basic OSM metamodel
+    · Section 4, the business rules extensions
+    · The Glossary in the Appendix
+Other sections provide supporting material.
+
+1.5 Terms and Definitions
+
+See the Glossary in the Appendix.
+
+1.6 Symbols and Abbreviations
+
+1.7 Changes to Adopted OMG Specifications
+
+There are no changes required to existing OMG specifications.
+
+1.8 Guide to this Specification
+
+The following section provides an overview of the OSM concepts to establish a general
+understanding and a framework for the detailed specification. Section 3 is the primary
+specification; it describes the OSM metamodel in detail. Section 4 extends the basic
+OSM metamodel to support business rules and alternative vocabularies based on SBVR.
+The appendix includes a glossary and examples.
+
+1.9 Credits
+
+Organization Structure Metamodel  19  Version 0.4
+2 Overview
+
+This section is intended to provide an understanding of the various aspects of the
+specification and how they fit together. It contains the following sub-sections:
+
+    · Organization unit
+
+    · Position
+
+    · Legal Entities
+
+    · Assignments
+
+    · Extended enterprise
+
+    · Contractor personnel
+
+2.1 Organization Unit
+
+The fundamental element of an organization structure is the organization unit. This
+represents any recognized association of people in the context of the enterprise. In a
+hierarchical structure, it may be the corporation, a division, a department, a group or a
+team. In addition, it may be a committee, a task force, a project management
+organization, a class (for education) and so on.
+
+The representation of associations as organization units may vary. The primary factors
+are (1) is the association formally recognized, and (2) is the association sufficiently
+persistent to be the basis of planning, processes and business rules.
+
+The top-level organization unit of a corporation is designated as "independent" to
+indicate that it represents the legal entity. There is only one such organizational unit
+associated with a company. At the same time, these legal entity business units may be
+members of a conglomerate, or local subsidiaries of a global corporation. Consequently,
+they may still have reporting relationships.
+
+2.2 Relationships
+
+Organization units are linked by relationships. These relationships generally reflect some
+form of authority. Traditionally, most authority relationships were based on the
+organizational hierarchy. Today, authority relationships are often specialized, creating
+different relationships for different authority subject matter. Authority may be based on
+budgets and spending, work product approval, resource allocation, or other factors.
+
+Organization Structure Metamodel  20  Version 0.4
+2.3 Position
+
+A position defines a role in and organization. This is a specialization of the general
+concept of role. A position may call for a certain number of people to be assigned. The
+actual number may vary from this ideal number.
+
+An Organization unit may have a number of different positions. A position may be
+designated as orgLeader = True, indicating that this is the leader of the associated
+organization. It is expected that an organization unit would have only one position with
+one person designated as the leader. Of course, there could be multiple people assigned
+with mutually exclusive effective dates.
+
+2.4 Legal Entities
+
+Legal entities are people and corporations that participate in the enterprise. The
+corporation of the enterprise being modeled is a legal entity. People are the employees,
+contractors or business partner personnel who are members of the enterprise organization.
+From an organizational perspective, external corporations are significant when they have
+employees or agents that have roles in the enterprise organization.
+
+Only people can occupy positions in the organization, because people make decisions,
+perform tasks, and are responsible for their actions. While corporations may
+conceptually make decisions or perform services, it is people who are ultimately
+responsible. Corporations are organizational units with related organizational units and
+positions with people assigned.
+
+2.5 Assignments
+
+People are linked to positions through assignments. A person may have multiple
+assignments, linking them to multiple positions. The assignments may have different
+effective dates that may or may not overlap.
+
+A specialization of assignment links a contractor person to the position of the agent
+responsible for the contractor person in the contracting corporation context.
+
+2.6 Extended Enterprise
+
+In addition to contractor personnel relationships, an enterprise may be highly integrated
+with suppliers and outsourced business functions. Thus, an organizational unit may be a
+unit of an external corporation. The organization unit has an association with its parent
+company. If the parent company of one organization unit is different from the parent
+company of a related organization unit, then the relationship is inherently a business
+partner relationship.
+
+Organization Structure Metamodel  21  Version 0.4
+2.7 Contractor Personnel
+
+A contractor may be assigned to a position in the organization. The contractor is
+affiliated with a different corporation, and the contractor can have an agent who is
+responsible for the contractor person's performance on the contract assignment and for
+the contractual relationship of the primary corporation with the contracting corporation.
+The agent person occupies a position in the contracting corporation.
+
+Organization Structure Metamodel  22  Version 0.4
+3 Basic OSM Specification
+
+This section defines the OMS metamodel in detail. The metamodel is presented in four
+parts:
+
+    · Core
+    · Legal entity
+    · Position
+    · OrgUnit
+
+While these could all be presented as a single diagram, the separation facilitates
+explanation by providing focus on a subset of the metamodel. Some elements occur in
+multiple diagrams for the sake of clarity of relationships, but they are described only in
+the first diagram in which they appear.
+
+3.1.1 Core
+
+The core concepts are shown below. The types in yellow are abstract types (i.e., are not
+instantiated in a model).
+
+Organization Structure Metamodel  23  Version 0.4
+                         NamedElement                                                          Role
+                         -name : String                            OrgAssignment
+
+                                                  OrgElement
+                                                -startDate : Date
+                                                -endDate : Date
+                                                -purpose : String
+
+                        OrgNode
+
+         OrgUnit                     OrgRelationship                      OrgPosition
+-independent : Boolean            -context : String                -idealNumber : Integer
+
+                                                              RelationshipType
+                                                              -description
+
+NamedElement: this is a super-type for all elements that have names.
+
+OrgElement: This is a super-type for all elements that have effective dates and a
+statement of purpose.
+
+OrgNode: This is a super-type for elements that identify nodes in the organization
+structure.
+
+OrgUnit: This represents a organizational unit in and organizational structure. Units
+may be comprised of other units as defined by OrgRelationships and/or people as defined
+by OrgPositions. An independent OrgUnit (independent = True) does not have a parent
+organization.
+
+Role: This is a common super-type for elements that define roles. This provides a
+common root for roles in organizations as well as roles in processes. A role defines the
+
+Organization Structure Metamodel  24                               Version 0.4
+characteristics of an entity in a particular context. Here the general concept of role is
+specialized to a position within an organization.
+
+OrgPosition: An OrgPosition defines the role of one or more people in an organization
+unit. It can specify an idealNumber as the intended number of people so that the number
+can be over or under target and still be represented. An OrgUnit may have multiple
+different OrgPositions that are concurrently effective. Generally, an OrgUnit will have =
+an OrgPosition with idealNumber = 1 for a manager. People can occupy multiple
+OrgPositions, but generally the positions will be in different OrgUnits.
+
+OrgAssignment: An OrgAssignment links a person to an OrgPosition. The assignment
+identifies the effective dates for that particular person. A person may be assigned to
+multiple positions with overlapping effective dates.
+
+OrgRelationship: An OrgRelationship defines a relationship between OrgUnits.
+Relationships may be for different purposes. The normal hierarchical relationship is one
+type. A committee with sub-committees could have a different relationship. An
+oversight authority could be another type of relationship.
+
+RelationshipType: This defines the types of relationships that occur within an
+organization. A default set should be defined and additional types can be defined by a
+user.
+
+3.1.2 Legal Entity
+
+The diagram below defines LegalEntity and related concepts. Role, NamedElement,
+OrgPosition, and OrgAssignment have been defined previously and are shown here to
+show relationships to LegalEntity.
+
+Organization Structure Metamodel  25  Version 0.4
+        Role                         NamedElement
+                                     -name : String
+       OrgPosition
+-idealNumber : Integer  Addressable
+
+                                         LegalEntity
+
+                        ContactInfo
+
+                             Company                         JobClassification
+                        -external : Boolean                  -description : String
+
+OrgAssignment                                        Person
+
+                                                                Community
+                                                             -description : String
+
+LegalEntity: LegalEntity represents entities that have legal status to enter into contracts,
+own property, etc. This generally represents people, corporations or government
+agencies.
+
+Addressable: Addressable is an abstract super-type for association of contact information
+with legal entities and organizations.
+
+ContactInfo: This carries address, phone number, etc., of a person, company or
+organization unit that enable that entity to be contacted.
+
+Company: Company is the legal entity that is associated with an organization. Generally,
+the company will be associated with the top level of an organizational hierarchy. It is
+possible that subsidiaries could be companies (i.e., legal entities) so these companies
+might be associated with subsidiary organizational units. In addition, a primary
+organization may have relationships with contracting companies as described in the
+section on position.
+
+Person: Person represents a human associated with the organization. Persons are only
+associated through assignments to positions. Persons can have only have relationships
+with other persons as members of a community or through positions and organization
+units.
+
+Organization Structure Metamodel     26                                             Version 0.4
+JobClassification: This specifies a job classifications for people in an organization. A
+number of people can have the same job classification and be in different positions and
+organization units.
+
+Community: A community is a group of people with a common interest. These may be
+communities within the organization or outside the organization (as in professional
+associations).
+
+3.1.3 Postion
+
+This section expands on the concepts related to OrgPosition as depicted in the diagram,
+below. OrgAssignment and OrgPosition have been discussed earlier.
+
+      OrgAssignment
+
+                        ContAssignment
+
+                                      ContAgent
+
+       OrgPosition
+-idealNumber : Integer
+
+ParticipationType       PosAuthority
+-description
+
+PosRequirements
+
+ParticipationType: This characterizes the nature of participation of the position in the
+organization. This would be used to designate a manager, a primary management
+relationship (e.g., payroll and performance), a matrixed relationship or possibly other
+forms of participation.
+
+Organization Structure Metamodel      27         Version 0.4
+PosAuthority: This designates an authority associated with the position. This could
+indicate spending limit, hiring and firing authority, specific transaction types, etc.. Not
+clear how much should be included in OSM.
+
+PosRequirements: Specifies requirements for a person to occupy the position. This
+would be applied to the person's capabilities (defined outside OSM) to determine if the
+person is qualified.
+
+ContAssignment: This specialization of assignment provides for a position to be
+occupied by a contract person. It adds a relationship to a contracting agent.
+
+ContAgent: This specialization of position associates a contractor agent with the
+assignment of a contractor person. The agent position is in the contractor company while
+the contractor assignment is in the primary company.
+
+3.1.4 OrgUnit
+
+This section expands on the concepts and relationships associated with the OrgUnit as
+depicted in the diagram, below. NamedElement, Addressable and OrgUnit have been
+described earlier.
+
+                                  -companyUnit
+
+Addressable  OrgUnit              1                            1 Company
+                                                  -company -external : Boolean
+             -independent : Boolean
+                                            1..*        1
+
+             BusinessFunction                     NamedElement
+             -description                         -name : String
+
+Company: Company has also been discussed earlier, but the relationships to OrgUnit
+require further discussion. The "external" attribute indicates if this is the primary
+company being modeled or is an external company with which the primary company has
+a relationship. The "companyUnit" relationship indicates the head organizational unit of
+the company organization. The "company" relationship identifies the company as the
+legal entity for each OrgUnit in the structure, i.e., the legal entity for which the OrgUnit
+functions.
+
+BusinessFunction: This defines a business function, a capability and responsibility of a
+business unit. A business function may be performed by multiple business units as where
+an enterprise may have multiple manufacturing plants or regional sales organizations. A
+single business unit may have multiple business functions.
+
+Organization Structure Metamodel  28                                            Version 0.4
+Organization Structure Metamodel  29  Version 0.4
+4 Business Vocabulary and Rules Extension
+
+The business rules extension provides (1) for the specification of business rules
+governing the design of an organization, and (2) for the specification of alternative
+vocabularies for expression of the organization structure and associated rules.
+
+These capabilities are described for business rules in general in the Semantics of Business
+Vocabulary and Rules specification adopted by OMG. The OSM concepts become
+concepts incorporated into rules, that can be expressed in alternative vocabularies.
+
+4.1 Metamodel Extensions
+
+4.2 OSM English Vocabulary
+
+This section defines a core English vocabulary for organization models. This vocabulary
+will be extended by specific organizations to express types of organizations, relationships
+and positions.
+
+This section uses the styling of SBVR Structured English. This section also uses some
+vocabulary from that specification as noted below.
+
+                                                                                                        role (SBVR)          noun concept (SBVR)
+
+person or organization                     [participant] fills [organizational role] in [organization]  organizational role              organization type
+                                           [organization] has [participant] in [organizational role]                         uses
+                                     0..1
+                                               [participant] fills
+
+person      organization 1                                             position
+                                                                                          position
+                                contains
+                                   is within  is in
+
+        organizational unit                                                                             is open  is filled
+
+                                           Figure 4.1, Relationships of Terms
+
+The terms are defined, below.
+
+organization                                  group of people or organizations joined together for a
+                                              purpose
+     Definition:
+
+organizational unit                           organization that is a part of another organization
+                                              organization
+        Definition:
+        General Concept:
+
+Organization Structure Metamodel              30                                                                             Version 0.4
+organization contains organizational unit
+
+   Synonymous Form: organizational unit is within organization
+
+participant                 person or organization that takes part in something,
+                            such as in an organization
+     Definition:            person or organization
+
+     General Concept:
+
+Concept Type:               role
+
+organizational role         role of a participant within an organization
+                            role
+     Definition:            If a participant fills an organizational role in an
+     General Concept:       organization, then the participant is an instance of the
+     Necessity:             organizational role.
+
+participant fills organizational role in organization
+
+   Synonymous Form: organization has participant in organizational role
+
+person                      human being
+
+     Definition:
+
+position                    organizational role of participation in a particular
+                            organization that is filled or is intended to be filled by an
+     Definition:            individual participant
+                            organizational role
+     General Concept:       Each position is in exactly one organization.
+     Necessity:             Each position is filled by at most one participant.
+     Necessity:             A participant fills a position in an organization if and only
+     Necessity:             if the participant fills the position and the position is in
+                            the organization.
+
+participant fills position
+
+position is filled          a participant fills the position
+
+     Definition:
+
+position is open            the position is not filled
+
+     Definition:
+
+position is in organization
+
+   Synonymous Form: organization has position
+
+organization type           category of organizations based on characteristics that
+                            distinguish it from other kinds of organizations
+     Definition:            noun concept
+                            Each organization type specializes the concept
+     General Concept:       `organization'.
+     Necessity:
+
+organization type uses organizational role
+                            the organization role is applicable in organizations of the
+Definition:                 organization type
+Note:                       Given a term `O' designating an organization type and a
+                            term `R' designating an organizational role used by that
+                            organization type, there is implicitly a binary fact type
+
+Organization Structure Metamodel         31                     Version 0.4
+                       having the form `O has R', which relates an organization
+                       ftooraapnaorrtigcaipnaiznattifoilnlinagl rtohleat`CroElOe'inustehdeboyrgtahneizoartgioann.izaEt.igon.
+                       type `Corporation', there is a fact type `corporation has
+                       CEO'.
+
+The following terms are used in the definitions and rules above or in the examples below,
+
+but are not part of the Organizational Structure Vocabulary. They are from SBVR
+
+Meaning and Representation Vocabulary.
+
+       concept
+       noun concept
+       role
+       instance
+       concept has instance
+       concept specializes concept
+
+4.3 Example Use of Vocabulary and Rules
+
+This section provides an example to illustrate the use of SBVR vocabulary and Rules.
+
+4.3.1 Example vocabulary
+
+The following terms illustrates extension of the base vocabulary to describe additional
+
+organizational concepts and associated rules that might be applied to multiple
+
+organizations.
+
+corporation
+
+General Concept:       organization
+
+Concept Type:          organization type
+
+department
+
+General Concept:       organizational unit
+
+Concept Type:          organization type
+
+corporate officer      person, participant
+                       organizational role
+     General Concept:
+     Concept Type:     corporate officer
+                       organizational role
+CEO
+                       participant
+     General Concept:  organizational role
+     Concept Type:
+                       person, participant
+manager                organizational role
+
+     General Concept:
+     Concept Type:
+
+sales person
+
+     General Concept:
+
+     Concept Type:
+
+Organization Structure Metamodel     32                                         Version 0.4
+management position     position that specializes the organizational role
+
+      Definition:       `manager'
+
+      General Concept:  position
+
+sales position          position that specializes the organizational role `sales
+                        person'
+     Definition:
+
+      General Concept:  position
+
+management position supervises position
+
+   Synonymous Form: position reports to manager position
+
+4.3.2 Example rules
+
+The following statements use the vocabularies above.
+
+      Each corporation must have at least two corporate officers.
+
+      Each corporation has at most one CEO.
+
+      The organizational role `CEO' is used by the organization type `corporation'.
+
+      Each department must have exactly one management position.
+
+      The management position of a department supervises each sales position of the
+      department.
+
+4.3.3 Example Model of Organizations and Positions
+
+The following example applies the above vocabulary and rules to a specific organization.
+
+ECorp
+
+      General Concept:  corporation
+
+ECorp Sales Department
+
+      General Concept:  department
+
+Bill
+
+     General Concept:   person
+
+Wesley
+
+      General Concept:  person
+
+Rita
+
+      General Concept:  person
+
+Sally
+
+      General Concept:  person
+
+The following statements use the vocabularies above.
+
+      ECorp has exactly one CEO.
+
+      Bill is the CEO of ECorp.
+
+Organization Structure Metamodel     33                            Version 0.4
+The ECorp Sales Department is within ECorp.
+The ECorp Sales Department has exactly one management position.
+Wesley is the manager of the ECorp Sales Department.
+The ECorp Sales Department has exactly three sales positions.
+Rita fills a sales position of the ECorp Sales Department.
+Sally is a sales person of the ECorp Sales Department.
+One sales position of the ECorp Sales Department is open.
+The management position of the ECorp Sales Department supervises each sales
+position of the ECorp Sales Department.
+
+Organization Structure Metamodel  34  Version 0.4
+Annexes
+
+A. Glossary
+B. Examples
+
+Organization Structure Metamodel  35  Version 0.4
+
