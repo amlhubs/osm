@@ -1,0 +1,34 @@
+{
+  "name": "@amlhubs/osm",
+  "version": "0.0.1",
+  "description": "OMG Organization Structure Metamodel (OSM) — bmi/06-11-02 v0.5 (2006-11-09). 2nd Initial Submission. OrgUnit + Position + Assignment + LegalEntity + Business Rules Extension specializing @amlhubs/sbvr.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amlhubs/osm.git",
+    "directory": "."
+  },
+  "keywords": ["osm", "osm-bmi-06-11-02", "metamodel", "omg", "organization-structure", "agenihub"],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@amlhubs/uml": "^0.0.2",
+    "@amlhubs/sbvr": "^0.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
